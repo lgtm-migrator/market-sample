@@ -66,13 +66,11 @@ let MOCK_ORDER_DATA: [String: Any] = [
 class ViewController: UIViewController {
 
     private let bnpl = serviceX.BNPL()
-    private let passport = serviceX.Passport()
 
     private lazy var activityIndicatorView = {
         return NVActivityIndicatorView(frame: CGRect(origin: CGPoint(x: UIScreen.main.bounds.size.width * 0.5 - 40, y: UIScreen.main.bounds.size.height * 0.5 - 40), size: CGSize(width: 80, height: 80)), type: .ballRotateChase, color: .red)
     }()
     
-    private var user: CredifyUserModel!
     private var orderInfo: OrderInfo!
     private var canUseBNPL: Bool = false {
         didSet {
@@ -125,7 +123,14 @@ class ViewController: UIViewController {
                         let phoneCountryCode = v["phoneCountryCode"] as? String ?? ""
                         let credifyId = v["credifyId"] as? String ?? ""
                         
-                        self.user = CredifyUserModel(id: "\(id)",
+                        // Cache additional data
+                        if let a = v["address"] as? String, let tier = v["tier"] as? String, let amount = v["loyaltyPoint"] as? Int {
+                            Cache.shared.address = a
+                            Cache.shared.tier = tier
+                            Cache.shared.totalAmount = amount
+                        }
+                        
+                        Cache.shared.currentUser = CredifyUserModel(id: "\(id)",
                                                      firstName: firstName,
                                                      lastName: lastName,
                                                      email: email,
@@ -167,7 +172,7 @@ class ViewController: UIViewController {
         }
         
 
-        bnpl.getBNPLAvailability(user: self.user) { result in
+        bnpl.getBNPLAvailability(user: Cache.shared.currentUser) { result in
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()
             }
@@ -177,7 +182,7 @@ class ViewController: UIViewController {
                 
                 print(result)
                 
-                self.user.credifyId = credifyId
+                Cache.shared.currentUser.credifyId = credifyId
                 
                 if isAvailable {
                     self.canUseBNPL = true
@@ -226,10 +231,12 @@ class ViewController: UIViewController {
     /// You need to create "orderInfo" on your side.
     func startBNPL(orderInfo: OrderInfo) {
         let task: ((String, ((Bool) -> Void)?) -> Void) = { credifyId, result in
+            Cache.shared.currentUser.credifyId = credifyId
+            
             // Using Alamofire
             AF.request(PUSH_CLAIMS_API_URL,
                        method: .post,
-                       parameters: ["id": self.user.id, "credify_id": credifyId],
+                       parameters: ["id": Cache.shared.currentUser.id, "credify_id": credifyId],
                        encoding: JSONEncoding.default).responseJSON { data in
                 switch data.result {
                 case .success:
@@ -242,24 +249,13 @@ class ViewController: UIViewController {
         
         bnpl.presentModally(
             from: self,
-            userProfile: self.user,
+            userProfile: Cache.shared.currentUser,
             orderInfo: orderInfo,
             pushClaimTokensTask: task
         ) { [weak self] status, orderId, isPaymentCompleted in
             self?.dismiss(animated: false) {
                 print("Status: \(status.rawValue), order id: \(orderId), payment completed: \(isPaymentCompleted)")
             }
-        }
-    }
-    
-    func showServiceInstance() {
-        passport.showDetail(
-            from: self,
-            user: user!,
-            marketId: APP_ID,
-            productTypes: []
-        ) {
-            print("page dismissed")
         }
     }
     

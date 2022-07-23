@@ -17,6 +17,7 @@
 		25B406A02888289A00924A8B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 25B4069F2888289A00924A8B /* Alamofire */; };
 		25B406A22888DC9A00924A8B /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B406A12888DC9A00924A8B /* MyPageViewController.swift */; };
 		25B406A528897EFB00924A8B /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 25B406A428897EFB00924A8B /* NVActivityIndicatorView */; };
+		25B406A7288B739A00924A8B /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B406A6288B739A00924A8B /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		25B406932888272400924A8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25B406952888272400924A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25B406A12888DC9A00924A8B /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		25B406A6288B739A00924A8B /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				25B406922888272400924A8B /* LaunchScreen.storyboard */,
 				25B406952888272400924A8B /* Info.plist */,
 				25B406A12888DC9A00924A8B /* MyPageViewController.swift */,
+				25B406A6288B739A00924A8B /* Cache.swift */,
 			);
 			path = bnplIOSDemo;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25B4068C2888272200924A8B /* ViewController.swift in Sources */,
+				25B406A7288B739A00924A8B /* Cache.swift in Sources */,
 				25B406882888272200924A8B /* AppDelegate.swift in Sources */,
 				25B4068A2888272200924A8B /* SceneDelegate.swift in Sources */,
 				25B406A22888DC9A00924A8B /* MyPageViewController.swift in Sources */,
