@@ -27,7 +27,7 @@ export const ORDER_DATA = {
       "image_url": "https://www.apple.com/v/apple-watch-series-3/v/images/overview/hero__e4ykmvto2gsy_large_2x.jpg",
       "product_url": "https://www.apple.com/vn/apple-watch-series-3/",
       "quantity": 2,
-      "measurement_unit": "EA", // TYPO
+      "measurement_unit": "EA",
       "unit_price": {
         "value": "2500000",
         "currency": "VND"

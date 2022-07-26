@@ -88,7 +88,7 @@ function Checkout(props: Props) {
         profile: props.user,
         orderId: res.id,
         orderAmount: {
-          value: "9000000",
+          value: ORDER_DATA.total_amount.value,
           currency: "VND",
         },
         completeBnplProviders: bnplInfo.providers,
