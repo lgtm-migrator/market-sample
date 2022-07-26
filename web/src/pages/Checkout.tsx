@@ -3,10 +3,8 @@ import {Layout, Col, Divider, Row, Button, Spin} from 'antd';
 import AppHeader from "../components/AppHeader";
 import {
   BNPLInfo,
-  Environment,
   getBNPLInfo,
   initialize,
-  OfferFlowPayloadBnpl,
   startOfferFlowBnpl, UserProfile
 } from "credify-web-sdk";
 import {API_KEY, APP_ID, CREATE_ORDER_API_URL, ENV, PUSH_CLAIMS_API_URL} from "../consts";
@@ -25,7 +23,8 @@ function Checkout(props: Props) {
   const [bnplInfo, setBnplInfo] = useState<BNPLInfo | null>(null)
 
   useEffect(() => {
-    initialize(ENV as Environment, API_KEY)
+    const env: any = ENV;
+    initialize(env, API_KEY)
 
     getBNPLInformation().then(() => {})
   }, [])
@@ -36,7 +35,7 @@ function Checkout(props: Props) {
   ) => {
     console.log("Push claim token......")
     try {
-      const res = await pushClaims(props.user!.id!, externalId)
+      const res = await pushClaims(props.user?.id || "", externalId)
       console.log({ res })
       resolve(true)
     } catch (error) {
@@ -49,12 +48,8 @@ function Checkout(props: Props) {
       id: localId,
       credify_id: credifyId,
     }
-    try {
-      const res = await axios.post(PUSH_CLAIMS_API_URL, body);
-      return res.data;
-    } catch (error) {
-      throw error
-    }
+    const res = await axios.post(PUSH_CLAIMS_API_URL, body);
+    return res.data;
   }
 
   const getBNPLInformation = async () => {
@@ -83,7 +78,7 @@ function Checkout(props: Props) {
     if (!bnplInfo) { return }
     setLoading(true)
     createOrder().then((res) => {
-      const payload = {
+      const payload: any = {
         offers: bnplInfo.offers,
         profile: props.user,
         orderId: res.id,
@@ -93,7 +88,7 @@ function Checkout(props: Props) {
         },
         completeBnplProviders: bnplInfo.providers,
         marketId: APP_ID
-      } as OfferFlowPayloadBnpl
+      }
 
       setLoading(false)
 
