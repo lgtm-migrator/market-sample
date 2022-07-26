@@ -34,7 +34,7 @@ let MOCK_ORDER_DATA: [String: Any] = [
             "image_url": "https://www.apple.com/v/airpods/shared/compare/a/images/compare/compare_airpods_pro__e9uzt0mzviem_large_2x.png",
             "product_url": "https://www.apple.com/vn/airpods-pro/",
             "quantity": 1,
-            "measment_unit": "EACH", // TYPO
+            "measurement_unit": "EA",
             "unit_price": [
                 "value": "4000000",
                 "currency": "VND"
@@ -50,7 +50,7 @@ let MOCK_ORDER_DATA: [String: Any] = [
             "image_url": "https://www.apple.com/v/apple-watch-series-3/v/images/overview/hero__e4ykmvto2gsy_large_2x.jpg",
             "product_url": "https://www.apple.com/vn/apple-watch-series-3/",
             "quantity": 2,
-            "measment_unit": "EACH", // TYPO
+            "measurement_unit": "EA",
             "unit_price": [
                 "value": "2500000",
                 "currency": "VND"
