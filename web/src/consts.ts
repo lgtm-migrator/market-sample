@@ -1,0 +1,12 @@
+export const ENV = "sit"
+export const API_KEY = "4ei9oQs7HqNb74khSHIp6OCDCkNmVZJ97JRnZRPy5NGeJgPtAIWYiJD1woWamzYz"
+export const APP_NAME = "BNPL demo market"
+export const APP_ID = "40f9a736-0d97-409b-a0f7-d23ebca20bde"
+//let PUSH_CLAIMS_API_URL = "http://localhost:8000/v1/push-claims"
+//let CREATE_ORDER_API_URL = "http://localhost:8000/v1/orders"
+//let DEMO_USER_API_URL = "http://localhost:8000/v1/demo-user"
+export const PUSH_CLAIMS_API_URL = "https://bnpl-demo.herokuapp.com/v1/push-claims"
+export const CREATE_ORDER_API_URL = "https://bnpl-demo.herokuapp.com/v1/orders"
+export const DEMO_USER_API_URL = "https://bnpl-demo.herokuapp.com/v1/demo-user"
+
+export const USER_CACHE_KEY = "@@demostore/user"
