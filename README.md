@@ -27,6 +27,8 @@ This is a sample implementation of serviceX Market.
 - iOS
   - Swift (v5.5)
   - Xcode (v13.4.1)
+- Web
+  - React (v4.0.3)
 
 This backend uses [Skeleton service](https://github.com/credify-pte-ltd/serviceX-skeleton-nodejs) and is deployed on Heroku.
 

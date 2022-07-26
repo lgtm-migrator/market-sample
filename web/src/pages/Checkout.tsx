@@ -9,7 +9,7 @@ import {
   OfferFlowPayloadBnpl,
   startOfferFlowBnpl, UserProfile
 } from "credify-web-sdk";
-import {API_KEY, APP_ID, CREATE_ORDER_API_URL, ENV, PUSH_CLAIMS_API_URL} from "../consts";
+import {API_KEY, APP_ID, CREATE_ORDER_API_URL, PUSH_CLAIMS_API_URL} from "../consts";
 import axios from "axios";
 import {ORDER_DATA} from "../mock";
 
@@ -25,7 +25,7 @@ function Checkout(props: Props) {
   const [bnplInfo, setBnplInfo] = useState<BNPLInfo | null>(null)
 
   useEffect(() => {
-    initialize(ENV as Environment, API_KEY)
+    initialize(Environment.SIT, API_KEY)
 
     getBNPLInformation().then(() => {})
   }, [])
@@ -36,7 +36,7 @@ function Checkout(props: Props) {
   ) => {
     console.log("Push claim token......")
     try {
-      const res = await pushClaims(props.user!.id!, externalId)
+      const res = await pushClaims(props.user.id || "", externalId)
       console.log({ res })
       resolve(true)
     } catch (error) {
@@ -83,7 +83,7 @@ function Checkout(props: Props) {
     if (!bnplInfo) { return }
     setLoading(true)
     createOrder().then((res) => {
-      const payload = {
+      const payload: OfferFlowPayloadBnpl = {
         offers: bnplInfo.offers,
         profile: props.user,
         orderId: res.id,
@@ -93,7 +93,7 @@ function Checkout(props: Props) {
         },
         completeBnplProviders: bnplInfo.providers,
         marketId: APP_ID
-      } as OfferFlowPayloadBnpl
+      }
 
       setLoading(false)
 

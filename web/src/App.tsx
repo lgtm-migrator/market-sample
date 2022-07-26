@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem(USER_CACHE_KEY)) {
-      setUser(JSON.parse(localStorage.getItem(USER_CACHE_KEY)!))
+      setUser(JSON.parse(localStorage.getItem(USER_CACHE_KEY) || ""))
     } else {
       loadNewUser();
     }
