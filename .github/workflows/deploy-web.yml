@@ -24,6 +24,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: './web/yarn.lock'
     - name: Set up web app
       run: yarn
     - name: Build web app
