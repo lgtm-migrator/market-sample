@@ -4,6 +4,8 @@ This is a sample implementation of serviceX Market.
 
 :link: Domain: https://bnpl-demo.herokuapp.com
 
+:link: Web sample app: https://bnpl-sample.netlify.app
+
 ## Endpoints
 
 - User counts
