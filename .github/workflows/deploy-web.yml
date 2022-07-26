@@ -1,0 +1,36 @@
+name: Web app deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./web
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './web/yarn.lock'
+    - name: Set up web app
+      run: yarn
+    - name: Build web app
+      run: yarn build
+    - name: Deploy web app
+      run: yarn netlify deploy --dir=build --prod
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
