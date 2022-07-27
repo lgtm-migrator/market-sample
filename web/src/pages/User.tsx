@@ -3,6 +3,7 @@ import {Layout, Col, Divider, Row, Button } from 'antd';
 import AppHeader from "../components/AppHeader";
 import {PRODUCT_TYPE, startServiceInstanceFlow, UserProfile} from "credify-web-sdk";
 import {APP_NAME} from "../consts";
+import {Link} from "react-router-dom";
 
 const { Footer } = Layout;
 
@@ -55,6 +56,9 @@ function User(props: Props) {
               </Col>
               <Col style={{ marginTop: "8px" }}>
                 <Button onClick={() => openBNPLDetail()}>Check BNPL usage</Button>
+              </Col>
+              <Col style={{ marginTop: "8px" }}>
+                <Link to="/admin">Admin</Link>
               </Col>
             </Col>
           </Row>
