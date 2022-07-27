@@ -38,9 +38,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Checkout user={user || {}} />} />
-        <Route path="user" element={<User user={user || {}} loadNewUser={loadNewUser} />} />
-        <Route path="callback" element={<Callback />} />
-        <Route path="checkout" element={<Checkout user={user || {}} />} />
+        <Route path="/user" element={<User user={user || {}} loadNewUser={loadNewUser} />} />
+        <Route path="/callback" element={<Callback />} />
+        <Route path="/checkout" element={<Checkout user={user || {}} />} />
       </Routes>
     </BrowserRouter>
   );

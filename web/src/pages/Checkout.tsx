@@ -127,7 +127,7 @@ function Checkout(props: Props) {
             </Col>
           </Row>
         </>
-        <Footer style={{ textAlign: "center" }}>This is Demo Store for serviceX BNPL</Footer>
+        <Footer style={{ marginTop: "16px", textAlign: "center", backgroundColor: "#F6E6D8" }}>This is Demo Store for serviceX BNPL</Footer>
       </Layout>
     </Spin>
   )
