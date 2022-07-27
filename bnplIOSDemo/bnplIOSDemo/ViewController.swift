@@ -199,10 +199,13 @@ class ViewController: UIViewController {
     
     func createOrder(completion: @escaping (OrderInfo) -> Void) {
         activityIndicatorView.startAnimating()
+        
+        var payload = MOCK_ORDER_DATA
+        payload["local_id"] = Cache.shared.currentUser.id
 
         AF.request(CREATE_ORDER_API_URL,
                    method: .post,
-                   parameters: MOCK_ORDER_DATA,
+                   parameters: payload,
                    encoding: JSONEncoding.default)
             .responseJSON { (data) in
                 DispatchQueue.main.async {

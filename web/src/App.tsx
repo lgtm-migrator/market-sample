@@ -10,6 +10,7 @@ import './App.css';
 import Callback from "./pages/Callback";
 import Checkout from "./pages/Checkout";
 import User from "./pages/User";
+import Admin from "./pages/Admin";
 import {DEMO_USER_API_URL, USER_CACHE_KEY} from "./consts";
 import {UserProfile} from "credify-web-sdk";
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/user" element={<User user={user || {}} loadNewUser={loadNewUser} />} />
         <Route path="/callback" element={<Callback />} />
         <Route path="/checkout" element={<Checkout user={user || {}} />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

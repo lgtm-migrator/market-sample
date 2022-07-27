@@ -73,7 +73,7 @@ function Checkout(props: Props) {
   }
 
   const createOrder = async () => {
-    const res = await axios.post(CREATE_ORDER_API_URL, ORDER_DATA)
+    const res = await axios.post(CREATE_ORDER_API_URL, { local_id: props.user.id, ...ORDER_DATA })
     return res.data;
   }
 
