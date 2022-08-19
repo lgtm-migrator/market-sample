@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Divider, Layout, Space, Table} from "antd";
 import AppHeader from "../components/AppHeader";
 import axios from "axios";
-import {ORDERS_API_URL} from "../consts";
+import {ORDERS_API_URL, PUSH_DISBURSEMENT_CLAIMS_API_URL} from "../consts";
 
 const { Footer } = Layout;
 
@@ -25,11 +25,16 @@ function Admin() {
       key: 'order-id',
     },
     {
+      title: 'Order status',
+      dataIndex: 'order-status',
+      key: 'order-status',
+    },
+    {
       title: 'Action',
       key: 'action',
       render: (_: any, record: any) => (
         <Space size="middle">
-          <Button onClick={() => handleDisbursement(record['order-id'])}><a>Disburse</a></Button>
+          <Button disabled={record['order-status'] !== "APPROVED"} onClick={() => handleDisbursement(record['order-id'])}><a>Upload docs for disbursement</a></Button>
           <Button onClick={() => handleCancellation(record['order-id'])}><a>Cancel</a></Button>
         </Space>
       ),
@@ -41,11 +46,12 @@ function Admin() {
   useEffect(() => {
     axios.get(ORDERS_API_URL).then((res) => {
       if (res.data.orders) {
-        const list = res.data.orders.map((order: any) => {
+        const list = res.data.orders.reverse().map((order: any) => {
           return {
             key: order.id,
             'local-id': order.localId,
             'order-id': order.orderId,
+            'order-status': order.status,
           }
         })
         setOrders(list)
@@ -54,8 +60,30 @@ function Admin() {
   }, [])
 
   const handleDisbursement = (orderId: string) => {
-    axios.post(`${ORDERS_API_URL}/${orderId}/disburse`, {}).then((res) => {
-      console.log(res)
+    const body = {
+      order_id: orderId,
+      documents: {
+        invoice: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        down_payment: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        delivery: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      }
+    };
+
+    axios.post(`${PUSH_DISBURSEMENT_CLAIMS_API_URL}`, body).then((r) => {
+      axios.get(ORDERS_API_URL).then((res) => {
+        if (res.data.orders) {
+          const list = res.data.orders.reverse().map((order: any) => {
+            return {
+              key: order.id,
+              'local-id': order.localId,
+              'order-id': order.orderId,
+              'order-status': order.status,
+            }
+          })
+          setOrders(list)
+        }
+      })
+
     })
   }
 

@@ -8,5 +8,6 @@ export const PUSH_CLAIMS_API_URL = "https://bnpl-demo.herokuapp.com/v1/push-clai
 export const CREATE_ORDER_API_URL = "https://bnpl-demo.herokuapp.com/v1/orders"
 export const DEMO_USER_API_URL = "https://bnpl-demo.herokuapp.com/v1/demo-user"
 export const ORDERS_API_URL = "https://bnpl-demo.herokuapp.com/v1/orders"
+export const PUSH_DISBURSEMENT_CLAIMS_API_URL = "https://bnpl-demo.herokuapp.com/v1/push-disbursement-claims"
 
 export const USER_CACHE_KEY = "@@demostore/user"
