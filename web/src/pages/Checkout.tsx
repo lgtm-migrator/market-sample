@@ -3,9 +3,7 @@ import {Layout, Col, Divider, Row, Button, Spin} from 'antd';
 import AppHeader from "../components/AppHeader";
 import {
   BNPLInfo,
-  Environment,
   getBNPLInfo,
-  initialize,
   OfferFlowPayloadBnpl,
   startOfferFlowBnpl, UserProfile
 } from "credify-web-sdk";
@@ -25,7 +23,7 @@ function Checkout(props: Props) {
   const [bnplInfo, setBnplInfo] = useState<BNPLInfo | null>(null)
 
   useEffect(() => {
-    initialize(Environment.SIT, API_KEY)
+    // initialize(Environment.SIT, API_KEY)
 
     getBNPLInformation().then(() => {})
   }, [])

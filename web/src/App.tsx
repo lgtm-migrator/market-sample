@@ -11,8 +11,8 @@ import Callback from "./pages/Callback";
 import Checkout from "./pages/Checkout";
 import User from "./pages/User";
 import Admin from "./pages/Admin";
-import {DEMO_USER_API_URL, USER_CACHE_KEY} from "./consts";
-import {UserProfile} from "credify-web-sdk";
+import {API_KEY, DEMO_USER_API_URL, USER_CACHE_KEY} from "./consts";
+import {Environment, initialize, UserProfile} from "credify-web-sdk";
 
 function App() {
 
@@ -28,6 +28,8 @@ function App() {
   }
 
   useEffect(() => {
+    initialize(Environment.SIT, API_KEY)
+
     if (localStorage.getItem(USER_CACHE_KEY)) {
       setUser(JSON.parse(localStorage.getItem(USER_CACHE_KEY) || ""))
     } else {
