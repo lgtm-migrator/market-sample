@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activity.main.fragment.MyPageFragment">
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvTier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvTotalPoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <one.credify.marketsample.bnplandroid.customView.SpreadTextView
+        android:id="@+id/stvCredifyId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnCredifyAccountPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:text="Credify account page" />
+
+    <Button
+        android:id="@+id/btnBNPLDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:text="BNPL details" />
+
+</LinearLayout>
