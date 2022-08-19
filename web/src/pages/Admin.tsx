@@ -35,7 +35,7 @@ function Admin() {
       render: (_: any, record: any) => (
         <Space size="middle">
           <Button disabled={record['order-status'] !== "APPROVED"} onClick={() => handleDisbursement(record['order-id'])}><a>Upload docs for disbursement</a></Button>
-          <Button onClick={() => handleCancellation(record['order-id'])}><a>Cancel</a></Button>
+          <Button disabled={record['order-status'] !== "APPROVED"} onClick={() => handleCancellation(record['order-id'])}><a>Cancel</a></Button>
         </Space>
       ),
     },
