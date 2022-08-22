@@ -18,8 +18,12 @@ function App() {
 
   const [user, setUser] = useState<UserProfile | null>(null)
 
-  const loadNewUser = () => {
-    axios.get(DEMO_USER_API_URL).then((res) => {
+  const loadUser = (id?: string) => {
+    let url = DEMO_USER_API_URL
+    if (id) {
+      url = `${url}?id=${id}`
+    }
+    axios.get(url).then((res) => {
       let user = res.data;
       user["countryCode"] = user.phoneCountryCode
       localStorage.setItem(USER_CACHE_KEY, JSON.stringify(user))
@@ -31,9 +35,10 @@ function App() {
     initialize(Environment.SIT, API_KEY)
 
     if (localStorage.getItem(USER_CACHE_KEY)) {
-      setUser(JSON.parse(localStorage.getItem(USER_CACHE_KEY) || ""))
+      const u = JSON.parse(localStorage.getItem(USER_CACHE_KEY) || "")
+      loadUser(`${u.id}`)
     } else {
-      loadNewUser();
+      loadUser();
     }
   }, [])
 
@@ -41,7 +46,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Checkout user={user || {}} />} />
-        <Route path="/user" element={<User user={user || {}} loadNewUser={loadNewUser} />} />
+        <Route path="/user" element={<User user={user || {}} loadNewUser={loadUser} />} />
         <Route path="/callback" element={<Callback />} />
         <Route path="/checkout" element={<Checkout user={user || {}} />} />
         <Route path="/admin" element={<Admin />} />
