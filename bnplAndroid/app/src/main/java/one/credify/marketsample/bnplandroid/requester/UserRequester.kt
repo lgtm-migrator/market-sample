@@ -2,11 +2,13 @@ package one.credify.marketsample.bnplandroid.requester
 
 import android.content.Context
 import android.util.Log
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import one.credify.marketsample.bnplandroid.extension.updateTimeout
 import one.credify.marketsample.bnplandroid.model.Constant
 import one.credify.marketsample.bnplandroid.model.User
 import one.credify.sdk.core.model.*
@@ -57,6 +59,7 @@ class UserRequester {
                 onResult(false, null, null)
             }
         )
+        stringRequest.updateTimeout()
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
@@ -87,6 +90,7 @@ class UserRequester {
                 onResult(false)
             }
         ) {}
+        stringRequest.updateTimeout()
 
         queue.add(stringRequest)
     }
