@@ -15,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import one.credify.marketsample.bnplandroid.base.BaseFragment
 import one.credify.marketsample.bnplandroid.databinding.FragmentHomeBinding
+import one.credify.marketsample.bnplandroid.extension.updateTimeout
 import one.credify.marketsample.bnplandroid.model.*
 import one.credify.marketsample.bnplandroid.requester.UserRequester
 import one.credify.sdk.CredifySDK
@@ -167,6 +168,7 @@ class HomeFragment : BaseFragment() {
                 return "application/json"
             }
         }
+        stringRequest.updateTimeout()
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
