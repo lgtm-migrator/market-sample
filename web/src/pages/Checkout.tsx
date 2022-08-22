@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {Layout, Col, Divider, Row, Button, Spin} from 'antd';
 import AppHeader from "../components/AppHeader";
 import {
-  BNPLInfo, Environment,
-  getBNPLInfo, initialize,
+  BNPLInfo,
+  getBNPLInfo,
   OfferFlowPayloadBnpl,
   startOfferFlowBnpl, UserProfile
 } from "credify-web-sdk";
-import {API_KEY, APP_ID, CREATE_ORDER_API_URL, PUSH_CLAIMS_API_URL} from "../consts";
+import {APP_ID, CREATE_ORDER_API_URL, PUSH_CLAIMS_API_URL} from "../consts";
 import axios from "axios";
 import {ORDER_DATA} from "../mock";
 
@@ -23,8 +23,6 @@ function Checkout(props: Props) {
   const [bnplInfo, setBnplInfo] = useState<BNPLInfo | null>(null)
 
   useEffect(() => {
-    initialize(Environment.SIT, API_KEY)
-
     getBNPLInformation().then(() => {})
   }, [])
 
